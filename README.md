@@ -1,4 +1,4 @@
 # Deep Hierarchical Video Compression
-This repository contains authors' implementation of several deep learning-based methods related to lossy video compression using Hierarchical VAEs.
+This repository contains authors' implementation of Deep Hierarchical Video Compression.
 
 This project is under active development.
