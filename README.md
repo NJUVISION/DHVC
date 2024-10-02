@@ -3,7 +3,7 @@
 This repository contains authors' implementation of Deep Hierarchical Video Compression.
 
 * DHVC 1.0:  paper is available at [Deep Hierarchical Video Compression | Proceedings of the AAAI Conference on Artificial Intelligence](https://ojs.aaai.org/index.php/AAAI/article/view/28733)
-* DHVC 2.0 has been submitted to TPAMI and will be updated soon.
+* DHVC 2.0： will be updated soon.
 
 ## DHVC 1.0
 
