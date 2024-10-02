@@ -2,7 +2,7 @@
 
 This repository contains authors' implementation of Deep Hierarchical Video Compression.
 
-* DHVC1.0: https://ojs.aaai.org/index.php/AAAI/article/view/28733/29413#:~:text=tive%20coding,%20termed%20DHVC,%20in%20which%20conditional%20probabili-ties.
+* DHVC1.0:  paper is available at [Deep Hierarchical Video Compression | Proceedings of the AAAI Conference on Artificial Intelligence](https://ojs.aaai.org/index.php/AAAI/article/view/28733)
 * DHVC2.0 has been submitted to TPAMI and will be updated soon.
 
 ## DHVC 1.0
@@ -11,6 +11,7 @@ We proposed hierarchical probabilistic predictive coding, for which hierarchal V
 
 
 ### Requirments
+
 - Python3.8+
 - CUDA11.0
 - pytorch1.11.0
@@ -31,13 +32,16 @@ Pretrained Models will be released soon.
 #### Testing
 
 Please download the pretrained models into `./pretrained` and configure the environment properly mentioned above first.
+
 ```shell
 python test.py
 ```
+
 The testing rusults can be found in `./runs`.
 
 
 ### Citation
+
 If you find this work helpful to your research, please cite
 
 ```
