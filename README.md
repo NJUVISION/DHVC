@@ -2,8 +2,7 @@
 
 This repository contains our series of works on Deep Hierarchical Video Compression.
 
-* DHVC 1.0: The first hierarchical predictive video coding method moves away from the hybrid coding framework, achieving best-in-class performance.
-Paper is available at [Deep Hierarchical Video Compression (AAAI 2024)](https://ojs.aaai.org/index.php/AAAI/article/view/28733).
+* DHVC 1.0: The first hierarchical predictive video coding method moves away from the hybrid coding framework, achieving best-in-class performance. Paper is available at [Deep Hierarchical Video Compression (AAAI 2024)](https://ojs.aaai.org/index.php/AAAI/article/view/28733).
 * DHVC 2.0: will be updated soon.
 
 ### Requirments
