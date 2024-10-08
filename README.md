@@ -51,6 +51,7 @@ If you find this work helpful to your research, please cite
   pages={8859--8867},
   year={2024}
 }
+
 @misc{lu2024highefficiencyneuralvideocompression,
       title={High-Efficiency Neural Video Compression via Hierarchical Predictive Learning}, 
       author={Ming Lu and Zhihao Duan and Wuyang Cong and Dandan Ding and Fengqing Zhu and Zhan Ma},
