@@ -3,7 +3,9 @@
 This repository contains our series of works on Deep Hierarchical Video Compression.
 
 * DHVC 1.0: The first hierarchical predictive coding method moves away from the hybrid coding framework, achieving best-in-class performance. Paper is available at [Deep Hierarchical Video Compression (AAAI 2024)](https://ojs.aaai.org/index.php/AAAI/article/view/28733).
-* DHVC 2.0: will be updated soon.
+* DHVC 2.0: The enhanced hierarchical predictive coding method, which integrates variable-rate intra- and inter-coding into a single model, delivering not only superior compression performance to representative methods but
+ also real-time processing with a significantly smaller memory footprint on standard GPUs. Paper is available at [High-Efficiency Neural Video Compression
+ via Hierarchical Predictive Learning (arxiv 2024)](https://arxiv.org/pdf/2410.02598).
 
 ### Requirments
 
@@ -48,6 +50,15 @@ If you find this work helpful to your research, please cite
   number={8},
   pages={8859--8867},
   year={2024}
+}
+@misc{lu2024highefficiencyneuralvideocompression,
+      title={High-Efficiency Neural Video Compression via Hierarchical Predictive Learning}, 
+      author={Ming Lu and Zhihao Duan and Wuyang Cong and Dandan Ding and Fengqing Zhu and Zhan Ma},
+      year={2024},
+      eprint={2410.02598},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV},
+      url={https://arxiv.org/abs/2410.02598}, 
 }
 ```
 
