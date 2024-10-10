@@ -52,14 +52,11 @@ If you find this work helpful to your research, please cite
   year={2024}
 }
 
-@misc{lu2024highefficiencyneuralvideocompression,
-      title={High-Efficiency Neural Video Compression via Hierarchical Predictive Learning}, 
-      author={Ming Lu and Zhihao Duan and Wuyang Cong and Dandan Ding and Fengqing Zhu and Zhan Ma},
-      year={2024},
-      eprint={2410.02598},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV},
-      url={https://arxiv.org/abs/2410.02598}, 
+@article{lu2024high,
+  title={High-Efficiency Neural Video Compression via Hierarchical Predictive Learning},
+  author={Lu, Ming and Duan, Zhihao and Cong, Wuyang and Ding, Dandan and Zhu, Fengqing and Ma, Zhan},
+  journal={arXiv preprint arXiv:2410.02598},
+  year={2024}
 }
 ```
 
