@@ -12,7 +12,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 - Python 3.8+
 - CUDA 11.0
 - pytorch 1.11.0
-- For others, please refer to requirements. txt
+- For others, please refer to requirements.txt
 
 ### Pretrained Models
 
