@@ -33,7 +33,6 @@ def _sanity_check_scale_table(scale_table):
 
 def gaussian_log_prob_mass(mean, scale, x, bin_size=1.0, prob_clamp=1e-6):
     mean, scale, x = _to_float32(mean, scale, x)
-    # assert scale.min() > 0, f'invalid scale value = {scale.min()}'
     log_prob = _safe_log_prob_mass(td.Normal(mean, scale), x, bin_size, prob_clamp)
     return log_prob
 

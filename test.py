@@ -5,22 +5,22 @@ import os
 import time
 import json
 import pickle
+import struct
 from pathlib import Path
 from collections import OrderedDict
+from ptflops import get_model_complexity_info
 
 import cv2
 import numpy as np
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torchvision import transforms
+from torchvision.utils import save_image
 
-from ptflops import get_model_complexity_info
-
-from models.dhvc2 import dhvc_base as DHVC
+from models.dhvc import dhvc_base as DHVC
 
 torch.backends.cudnn.deterministic = True
 torch.set_num_threads(1)
@@ -84,14 +84,14 @@ def crop(x, size):
 def evaluate_one_video(args, quality, frame_dir):
 
     net = DHVC()
-    snapshot = torch.load('/workspace/lm/z_previous/videocodec/src/dhvc/checkpoints/dhvc2/3/checkpoint_best_loss.pth.tar')
 
-    # new_state_dict = OrderedDict()
-    # for k, v in snapshot["state_dict"].items():
-    #     name = k[7:] # remove module
-    #     new_state_dict[name] = v
-    # net_inter.load_state_dict(new_state_dict)
+    macs, params = get_model_complexity_info(
+        net, (1, 3, 256, 256), as_strings=False, print_per_layer_stat=False
+    )
+    logging.info("MACs/pixel:" + str(macs / (256**2)))
+    logging.info("params:" + str(params))
 
+    snapshot = torch.load(args.checkpoint_path)
     net.load_state_dict(snapshot['state_dict'])
     
     net.to(device).eval()
@@ -103,12 +103,6 @@ def evaluate_one_video(args, quality, frame_dir):
     save_path = results_dir / f'q{quality}.json'
     logging.info(f'starting q={quality}, frame_dir={frame_dir}, save_path={save_path}')
 
-    # macs, params = get_model_complexity_info(
-    #     net, (1, 3, 256, 256), as_strings=False, print_per_layer_stat=False
-    # )
-    # logging.info("MACs/pixel:" + str(macs / (256**2)))
-    # logging.info("params:" + str(params))
-
     tic = time.time()
 
     frame_dir = Path(frame_dir)
@@ -116,8 +110,6 @@ def evaluate_one_video(args, quality, frame_dir):
     save_bit_path = Path(f'cache/{_str}/{frame_dir.stem}.bits')
     if not save_bit_path.parent.is_dir():
         save_bit_path.parent.mkdir(parents=True, exist_ok=True)
-
-    f = save_bit_path.open("wb")
 
     # # compute metrics
     ori_frame_paths = list(Path(frame_dir).glob('*.png'))
@@ -134,7 +126,6 @@ def evaluate_one_video(args, quality, frame_dir):
     for fi, ori_fp in enumerate(ori_frame_paths[:num_frames]):
         # read an original frame
         x = cv2.cvtColor(cv2.imread(str(ori_fp)), cv2.COLOR_BGR2RGB) / 255.
-        # x = cv2.cvtColor(cv2.imread(str(ori_frame_paths[0])), cv2.COLOR_BGR2RGB) / 255.
         assert x.shape == (img_height, img_width, 3)
 
         x = torch.FloatTensor(x).permute(2, 0, 1).unsqueeze(0).to(device)
@@ -145,40 +136,26 @@ def evaluate_one_video(args, quality, frame_dir):
         if fi % args.gop == 0:
             z_list = net.get_temp_bias(x_pad)
             z_lists = [z_list, z_list]
-            with torch.no_grad():
-                frame_stats = net.forward_frame(x_pad, z_lists, get_latent=True, return_rec=True)
-                z_lists = [z_lists[-1], frame_stats['z']]
-                sum_bpp += frame_stats['bpp']
-                rec_pad = frame_stats['im_hat'].clamp(0, 1)
-                print('frame:', fi, 'bpp:', frame_stats['bpp'], 'psnr:', frame_stats['psnr'])
-                # print(frame_stats['bpp'], ',')
-                # print(frame_stats['psnr'], ',')
-
-        else:
-            with torch.no_grad():
-                frame_stats = net.forward_frame(x_pad, z_lists, get_latent=True, return_rec=True)
-                z_lists = [z_lists[-1], frame_stats['z']]
-                sum_bpp += frame_stats['bpp']
-                rec_pad = frame_stats['im_hat'].clamp(0, 1)
-                print('frame:', fi, 'bpp:', frame_stats['bpp'], 'psnr:', frame_stats['psnr'])
-                # print(frame_stats['bpp'], ',')
-                # print(frame_stats['psnr'], ',')
+        with torch.no_grad():
+            head_info, compressed_strings = net.compress(x_pad, z_lists, get_latent=True)
+            with open(save_bit_path, "wb") as f:
+                f.write(head_info + compressed_strings)
+            with open(save_bit_path, 'rb') as f:
+                head_info = f.read(6)
+                compressed_strings = f.read()
+            rec_pad, z_new_list = net.decompress(head_info, compressed_strings, z_lists, get_latent=True)
+            z_lists = [z_lists[-1], z_new_list]
+            rec_pad = rec_pad.clamp(0, 1)
 
         rec = crop(rec_pad, (img_height, img_width))
         mse = torch.mean((x - rec)**2).item()
         psnr = -10 * np.log10(mse)
-        
-        # # save result
-        # result = transforms.ToPILImage()(rec.squeeze().cpu())
-        # result.save('/workspace/lm/videocodec/src/dhvc/vis_results/'+str(fi)+'.png', format="PNG")
-
+        bpp = float(filesize(save_bit_path)) * 8 / (img_height * img_width)
+        sum_bpp += bpp
         sum_psnr += psnr
-    
-    f.close()
+        print('frame:', fi, 'bpp:', bpp, 'psnr:', psnr)
     
     # compute bpp
-    # num_pixels = img_height * img_width * num_frames
-    # avg_bpp = float(filesize(save_bit_path)) * 8 / num_pixels
     avg_bpp = sum_bpp / num_frames
     avg_psnr = sum_psnr / num_frames
 
@@ -210,22 +187,14 @@ def evaluate_one_video(args, quality, frame_dir):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--test-dataset', type=str, default='uvg')
+    parser.add_argument('-c', '--checkpoint-path', type=str, default='./pretrained/3/checkpoint_best_loss.pth.tar')
+    parser.add_argument('-p', '--test-dataset-path', type=str, default='./datasets/UVG/PNG')
     parser.add_argument('-q', '--quality',      type=int, default=[6], nargs='+')
     parser.add_argument('-g', '--gop',          type=int, default=32)
     parser.add_argument('-f', '--num-frames',   type=int, default=96)
     parser.add_argument("--intra", action="store_true")
     parser.add_argument("--cuda", action="store_true")
     args = parser.parse_args()
-
-    frames_root = {
-        'uvg': '/workspace/lm/data/UVG/PNG',
-        'mcl-jcv': '/workspace/lm/data/MCL_JCV/PNG',
-        'classb': '/workspace/lm/data/HEVC_CTC/ClassB/PNG',
-        'classc': '/workspace/lm/data/HEVC_CTC/ClassC/PNG',
-        'classd': '/workspace/lm/data/HEVC_CTC/ClassD/PNG',
-        'classe': '/workspace/lm/data/HEVC_CTC/ClassE/PNG',
-        'synthetic': '/workspace/lm/videocodec/exp/data/sharpenblur/1.0',
-    }
 
     suffix = 'allframes' if (args.num_frames is None) else f'first{args.num_frames}'
     results_dir = Path(f'runs/results/{args.test_dataset}-gop{args.gop}-{suffix}')
@@ -238,7 +207,7 @@ def main():
     logging.info(f'Saving results to {results_dir}')
     args.results_dir = results_dir
 
-    video_frame_dirs = list(Path(frames_root[args.test_dataset]).glob('*/'))
+    video_frame_dirs = list(Path(args.test_dataset_path).glob('*/'))
     video_frame_dirs.sort()
     logging.info(f'Total {len(video_frame_dirs)} sequences')
 
@@ -248,9 +217,6 @@ def main():
         sum_psnr = 0.0
         sum_bpp = 0.0
         for i, vfd in enumerate(video_frame_dirs):
-            # if i == 0:
-            #     continue
-            # if i == 16:
             mp_results = evaluate_one_video(args, q, vfd)
             sum_psnr += mp_results['psnr']
             sum_bpp += mp_results['bpp']

@@ -5,7 +5,11 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 * DHVC 1.0: The first hierarchical predictive coding method moves away from the hybrid coding framework, achieving best-in-class performance. Paper is available at [Deep Hierarchical Video Compression (AAAI 2024)](https://ojs.aaai.org/index.php/AAAI/article/view/28733).
 * DHVC 2.0: The enhanced hierarchical predictive coding method, which integrates variable-rate intra- and inter-coding into a single model, delivering not only superior compression performance to representative methods but
  also real-time processing with a significantly smaller memory footprint on standard GPUs. Paper is available at [High-Efficiency Neural Video Compression
- via Hierarchical Predictive Learning (arxiv 2024)](https://arxiv.org/pdf/2410.02598).
+  via Hierarchical Predictive Learning (arxiv 2024)](https://arxiv.org/pdf/2410.02598).
+
+## News
+
+2025.2.12 We have updated the code of DHVC-1.0 and uploaded the pretrained model (https://box.nju.edu.cn/d/cda112aa5f724b7ea865/).
 
 ### Requirments
 
@@ -28,13 +32,15 @@ Pretrained Models will be released soon.
 
 #### Testing
 
-Please download the pretrained models into `./pretrained` and configure the environment properly mentioned above first.
+Please download the pretrained models and configure the environment properly mentioned above first.
 
 ```shell
-python test.py
+python test.py -d test_dataset_name -c checkpoint_path -p test_dataset_path -g gop_size -f test_frame_numbers 
 ```
 
-The testing rusults can be found in `./runs`.
+The `- d` parameter represents the name of the test dataset used in log file- The `-c,- p` parameters represents the path of the pretrained models and test dataset. By default, the pretrained models will be placed in the `./pretrained`, the test dataset will be placed in the `./dataset` path. The `-g,-f` parameters represent the GoP size and total frame numbers of the test configuration.
+
+The testing results can be found in `./runs`.
 
 
 ### Citation
@@ -59,4 +65,3 @@ If you find this work helpful to your research, please cite
   year={2024}
 }
 ```
-
