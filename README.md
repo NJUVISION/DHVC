@@ -27,7 +27,7 @@ Please download the pretrained models and configure the environment properly fir
 ```shell
 python test.py -d test_dataset_name -c checkpoint_path -p test_dataset_path -g 32 -f 96 
 ```
-`-d` represents the name of the test dataset used in log file. `-c, -p` represent the path of the pretrained models and test dataset. `-g, -f` represent the GOP size and total frame numbers for evaluation. By default, the pretrained models will be placed in `./pretrained`, the test dataset will be placed in `./dataset`. The testing results can be found in `./runs`.
+`-d` represents the name of the test dataset used in log file. `-c, -p` represent the path of the pretrained models and test dataset. `-g, -f` represent the GOP size and total frame numbers for evaluation. By default, the pretrained models will be placed in `./pretrained`, the test dataset will be placed in `./dataset`. The test results can be found in `./runs`.
 
 ### Citation
 If you find this work helpful to your research, please cite
