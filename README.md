@@ -20,7 +20,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 
 ### Pretrained Models
 
-Pretrained Models will be released soon.
+The download link for pretrained models of DHVC-1.0 is https://box.nju.edu.cn/d/cda112aa5f724b7ea865/.
 
 ### Dataset
 
@@ -35,10 +35,10 @@ Pretrained Models will be released soon.
 Please download the pretrained models and configure the environment properly mentioned above first.
 
 ```shell
-python test.py -d test_dataset_name -c checkpoint_path -p test_dataset_path -g gop_size -f test_frame_numbers 
+python test.py -d test_dataset_name -c checkpoint_path -p test_dataset_path -g 32 -f 96 
 ```
 
-The `- d` parameter represents the name of the test dataset used in log file- The `-c,- p` parameters represents the path of the pretrained models and test dataset. By default, the pretrained models will be placed in the `./pretrained`, the test dataset will be placed in the `./dataset` path. The `-g,-f` parameters represent the GoP size and total frame numbers of the test configuration.
+The `- d` parameter represents the name of the test dataset used in log file- The `-c, -p` parameters represent the path of the pretrained models and test dataset. By default, the pretrained models will be placed in the `./pretrained`, the test dataset will be placed in the `./dataset` path. The `-g, -f` parameters represent the GoP size and total frame numbers of the test configuration.
 
 The testing results can be found in `./runs`.
 
