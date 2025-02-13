@@ -15,7 +15,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 - For others, please refer to requirements.txt
 
 ### Pretrained Models
-The pretrained models for DHVC 1.0 can be downloaded from [NJU Box](https://box.nju.edu.cn/d/cda112aa5f724b7ea865/).
+The pretrained models of DHVC 1.0 can be downloaded from [NJU Box](https://box.nju.edu.cn/d/cda112aa5f724b7ea865/).
 
 ### Dataset
 * Train dataset: Vimeo90k
