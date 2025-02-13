@@ -111,7 +111,7 @@ def evaluate_one_video(args, quality, frame_dir):
     if not save_bit_path.parent.is_dir():
         save_bit_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # # compute metrics
+    # compute metrics
     ori_frame_paths = list(Path(frame_dir).glob('*.png'))
     ori_frame_paths.sort()
     if args.num_frames == None:
@@ -136,13 +136,17 @@ def evaluate_one_video(args, quality, frame_dir):
         if fi % args.gop == 0:
             z_list = net.get_temp_bias(x_pad)
             z_lists = [z_list, z_list]
+            
         with torch.no_grad():
+            # compress
             head_info, compressed_strings = net.compress(x_pad, z_lists, get_latent=True)
             with open(save_bit_path, "wb") as f:
                 f.write(head_info + compressed_strings)
             with open(save_bit_path, 'rb') as f:
                 head_info = f.read(6)
                 compressed_strings = f.read()
+
+            # decompress
             rec_pad, z_new_list = net.decompress(head_info, compressed_strings, z_lists, get_latent=True)
             z_lists = [z_lists[-1], z_new_list]
             rec_pad = rec_pad.clamp(0, 1)
