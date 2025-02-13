@@ -9,7 +9,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 
 ## News
 
-2025.2.12 We have updated the code of DHVC-1.0 and uploaded the pretrained model (https://box.nju.edu.cn/d/cda112aa5f724b7ea865/).
+2025.2.12 We have reconstructed the code of DHVC-1.0 and uploaded the pretrained models.
 
 ### Requirments
 
@@ -20,7 +20,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 
 ### Pretrained Models
 
-The download link for pretrained models of DHVC-1.0 is https://box.nju.edu.cn/d/cda112aa5f724b7ea865/.
+The download link for pretrained models of DHVC-1.0 is [NJU BOX](https://box.nju.edu.cn/d/cda112aa5f724b7ea865/).
 
 ### Dataset
 
