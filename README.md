@@ -6,7 +6,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
   via Hierarchical Predictive Learning (arxiv 2024)](https://arxiv.org/pdf/2410.02598).
 
 ## News
-[2025.2.12] We have reconstructed the code and uploaded the pretrained models of DHVC-1.0.
+[2025.2.12] We have reconstructed the code and uploaded the pretrained models of DHVC 1.0.
 
 ### Requirments
 - Python 3.8+
@@ -15,7 +15,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 - For others, please refer to requirements.txt
 
 ### Pretrained Models
-The pretrained models for DHVC-1.0 can be downloaded from [NJU Box](https://box.nju.edu.cn/d/cda112aa5f724b7ea865/).
+The pretrained models for DHVC 1.0 can be downloaded from [NJU Box](https://box.nju.edu.cn/d/cda112aa5f724b7ea865/).
 
 ### Dataset
 * Train dataset: Vimeo90k
