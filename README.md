@@ -23,7 +23,9 @@ The pretrained models of DHVC 1.0 can be downloaded from [NJU Box](https://box.n
 
 ### Usage
 #### Testing
-Please download the pretrained models and configure the environment properly first.
+Please download the pretrained models and configure the environment properly first. 
+
+Follow the command below to run testing in the dhvc-1.0 folder:
 ```shell
 python test.py -d test_dataset_name -c checkpoint_path -p test_dataset_path -g 32 -f 96 
 ```
