@@ -32,7 +32,7 @@ python test.py -d test_dataset_name -c checkpoint_path -p test_dataset_path -g 3
 `-d` represents the name of the test dataset used in log file. `-c, -p` represent the path of the pretrained models and test dataset. `-g, -f` represent the GOP size and total frame numbers for evaluation. By default, the pretrained models will be placed in `./pretrained`, the test dataset will be placed in `./dataset`. The test results can be found in `./runs`.
 
 ### Citation
-If you find this work helpful to your research, please cite
+If you find this work helpful to your research, please cite:
 ```
 @inproceedings{lu2024deep,
   title={Deep Hierarchical Video Compression},
@@ -52,5 +52,5 @@ If you find this work helpful to your research, please cite
 }
 ```
 
-### Citation
+### Contact
 If you have any question, feel free to contact us via minglu@nju.edu.cn or congwuyang@smail.nju.edu.cn.
