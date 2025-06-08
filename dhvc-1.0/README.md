@@ -1,4 +1,4 @@
-## PyTorch implementation of Deep Hierarchical Video Compression
+## PyTorch implementation of DHVC 1.0
 ### Requirments
 - Python 3.8+
 - CUDA 11.0
