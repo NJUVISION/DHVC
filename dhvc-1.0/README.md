@@ -1,4 +1,4 @@
-## PyTorch implementation of our [DHVC 1.0 (AAAI 2024)](https://ojs.aaai.org/index.php/AAAI/article/view/28733)
+## PyTorch implementation of our DHVC 1.0 [(AAAI 2024)](https://ojs.aaai.org/index.php/AAAI/article/view/28733)
 ### Requirments
 - Python 3.8+
 - CUDA 11.0
