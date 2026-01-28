@@ -6,7 +6,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
   via Hierarchical Predictive Learning (arxiv 2024)](https://arxiv.org/pdf/2410.02598).
 
 ## News
-[2026.1.26] Excited to share that our work on intra-frame hierarchical coding has been accepted by ICLR! The code will be open-sourced soon. 🚀
+[2026.1.26] Excited to share that our work on intra-frame hierarchical coding (DHIC) has been accepted by ICLR! The code will be open-sourced soon. 🚀
 
 [2025.2.12] We have reconstructed the code and uploaded the pretrained models of [DHVC 1.0](https://github.com/NJUVISION/DHVC/tree/main/dhvc-1.0).
 
