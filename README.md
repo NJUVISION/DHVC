@@ -4,7 +4,7 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 * DHVC 2.0: The enhanced hierarchical predictive coding method, which integrates variable-rate intra- and inter-coding into a single model, delivering not only superior compression performance to representative methods but
  also real-time processing with a significantly smaller memory footprint on standard GPUs. Paper is available at [High-Efficiency Neural Video Compression
   via Hierarchical Predictive Learning (arxiv 2024)](https://arxiv.org/pdf/2410.02598).
-* DHIC: Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective.
+* DHIC: A spectrally regularized hierarchical image coding method, delivering not only superior compression performance but also efficient optimization without increasing inference complexity. Paper is available at [Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective (OpenReview)](https://openreview.net/pdf?id=lO6I66lweK).
 
 ## News
 [2026.1.26] Excited to share that our work on intra-frame hierarchical coding (DHIC) has been accepted by ICLR! The code will be open-sourced soon. 🚀
