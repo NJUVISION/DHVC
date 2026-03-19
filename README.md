@@ -30,6 +30,12 @@ If you find this work helpful to your research, please cite:
   journal={arXiv preprint arXiv:2410.02598},
   year={2024}
 }
+
+@inproceedings{congtaming,
+  title={Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective},
+  author={Cong, Wuyang and Shi, Junqi and Lu, Ming and Zhang, Xu and Ma, Zhan},
+  booktitle={The Fourteenth International Conference on Learning Representations}
+}
 ```
 
 ### Contact
