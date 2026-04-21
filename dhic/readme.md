@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 ```
 # 1. Download Pretrained Ckpt
-From https://box.nju.edu.cn/library/34f0db68-e19e-45db-a9cd-6fc08158b125/DHIC/
+From [https://box.nju.edu.cn/library/34f0db68-e19e-45db-a9cd-6fc08158b125/DHIC/](https://box.nju.edu.cn/f/4b4bb63fef8b4a3381b2/)
 
 # 2. Select Test Datasets, such as Kodak, and run
 python test_dhic.py
