@@ -4,7 +4,9 @@
 [![Conference](https://img.shields.io/badge/ICLR-2026-blue)](https://iclr.cc/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-> **<a href='https://openreview.net/forum?id=lO6I66lweK'>Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective | OpenReview</a>](#) > Wuyang Cong, Junqi Shi, Ming Lu, Xu Zhang, Zhan Ma  *Nanjing University* >
+**[Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective](https://openreview.net/forum?id=lO6I66lweK)**  
+Wuyang Cong, Junqi Shi, Ming Lu, Xu Zhang, Zhan Ma  
+*Nanjing University*
 
 Official PyTorch implementation of the ICLR 2026 paper. We introduce a novel **Spectral Regularization** framework for Deep Hierarchical Image Compression (DHIC), specifically designed to overcome optimization bottlenecks in hierarchical architectures and achieved better performance.
 
