@@ -20,7 +20,7 @@ To address this, we propose two explicit spectral regularization schemes:
 
 **Highlights:**
 
-- 🚀 **Accelerated Convergence**: Speeds up the training of vanilla hierarchical models by **2.3$\times$**.
+- 🚀 **Accelerated Convergence**: Speeds up the training of vanilla hierarchical models by **2.3x**.
 - 📈 **State-of-the-Art Performance**: Delivers an average **20.65% rate-distortion gain** over VTM-22.0.
 - ⚡ **Zero Inference Overhead**: Both regularizers are applied *only during training* and impose absolute zero additional FLOPs or parameters during testing.
 
