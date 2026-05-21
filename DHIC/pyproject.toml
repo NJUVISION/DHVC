@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dhic-codec"
+version = "0.1.0"
+description = "Deep hierarchical image compression with spectral regularization."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "compressai",
+    "opencv-python",
+    "pytorch-msssim",
+    "scipy",
+    "timm",
+    "torch",
+    "torchvision",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[project.scripts]
+dhic-eval = "dhic_codec.eval:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
