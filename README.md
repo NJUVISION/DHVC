@@ -7,6 +7,8 @@ This repository contains our series of works on Deep Hierarchical Video Compress
 * __DHIC__: A spectrally regularized hierarchical image coding method, delivering not only superior compression performance but also efficient optimization without increasing inference complexity. Paper is available at [Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective (ICLR 2026)](https://openreview.net/pdf?id=lO6I66lweK).
 
 ## News
+[2026.5.21] We have reconstructed the code and uploaded the pretrained models of [DHIC](https://github.com/NJUVISION/DHVC/tree/main/dhic).
+
 [2026.1.26] Excited to share that our work on intra-frame hierarchical coding (DHIC) has been accepted by ICLR! The code will be open-sourced soon. 🚀
 
 [2025.2.12] We have reconstructed the code and uploaded the pretrained models of [DHVC 1.0](https://github.com/NJUVISION/DHVC/tree/main/dhvc-1.0).
