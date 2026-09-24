@@ -1,0 +1,4 @@
+include LICENSE.txt README.md requirements.txt eval.py score.py
+recursive-include scripts *.sh
+recursive-include tests *.py
+recursive-include weights *.md

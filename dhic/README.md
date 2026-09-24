@@ -1,8 +1,8 @@
 # Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective (ICLR 2026)
 
-[![Pytorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C.svg)](https://pytorch.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-required-EE4C2C.svg)](https://pytorch.org/)
 [![Conference](https://img.shields.io/badge/ICLR-2026-blue)](https://iclr.cc/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-green.svg)](../LICENSE.txt)
 
 **[Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective](https://openreview.net/forum?id=lO6I66lweK)**  
 Wuyang Cong, Junqi Shi, Ming Lu, Xu Zhang, Zhan Ma  
@@ -26,35 +26,36 @@ To address this, we propose two explicit spectral regularization schemes:
 
 ---
 
-## 🛠️ Environment Configuration
+## Installation
 
-### Prerequisites
-- Linux (Ubuntu 20.04 / 22.04)
-- Python $\ge$ 3.10
-- CUDA $\ge$ 12.4
-- PyTorch $\ge$ 2.6.0
+Requires Linux x86_64 (glibc 2.32+), Python 3.12, and a compatible PyTorch
+installation.
 
-### Installation
 ```bash
-# 1. Create virtual environment
-conda create -n dhic python=3.10 -y
-conda activate dhic
-
-# 2. Install dependencies
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+python -m pip install -e .
 ```
 
-### Test
+Download the [pretrained model](https://box.nju.edu.cn/seafhttp/f/c0c24ba73569426194e1/?op=view)
+and place it at `weights/model.pth`.
 
+## Encode and decode
+
+```python
+from dhic import Codec
+
+codec = Codec("weights/model.pth", device="cuda:0")
+stream = codec.encode("input.png", qp=31)
+codec.decode(stream).save("reconstruction.png")
 ```
-# 1. Download Pretrained Ckpt
-From [https://box.nju.edu.cn/library/34f0db68-e19e-45db-a9cd-6fc08158b125/DHIC/](https://box.nju.edu.cn/f/4b4bb63fef8b4a3381b2/)
 
-# 2. Select Test Datasets, such as Kodak, and run either entry point
-python test_dhic.py --dataset-root /datasets/Kodak/ --checkpoint checkpoint.pth.tar
-dhic-eval --dataset-root /datasets/Kodak/ --checkpoint checkpoint.pth.tar
+## Evaluation
 
-# 3. Run smoke tests
-python -m pytest -q
+```bash
+python eval.py --model weights/model.pth --dataset kodak \
+  --root /path/to/kodak --output results/kodak.jsonl --device cuda:0
+python score.py results/kodak.jsonl
 ```
+
+For multi-GPU evaluation, see `scripts/evaluate_all.sh`.
 

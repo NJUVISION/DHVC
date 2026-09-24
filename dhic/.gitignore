@@ -1,0 +1,7 @@
+*.egg-info/
+.pytest_cache/
+.venv/
+build/
+dist/
+results/
+weights/*.pth
