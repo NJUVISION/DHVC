@@ -1,10 +1,10 @@
 # Deep Hierarchical Video Compression
-This repository contains our series of works on Deep Hierarchical Video Compression.
+This repository contains our series of works on Deep Hierarchical Compression.
+* __DHIC__: A spectrally regularized hierarchical image coding method, delivering not only superior compression performance but also efficient optimization without increasing inference complexity. Paper is available at [Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective (ICLR 2026)](https://openreview.net/pdf?id=lO6I66lweK).
 * __DHVC 1.0__: The first hierarchical predictive coding method moves away from the hybrid coding framework, achieving best-in-class performance. Paper is available at [Deep Hierarchical Video Compression (AAAI 2024)](https://ojs.aaai.org/index.php/AAAI/article/view/28733).
 * __DHVC 2.0__: The enhanced hierarchical predictive coding method, which integrates variable-rate intra- and inter-coding into a single model, delivering not only superior compression performance to representative methods but
  also real-time processing with a significantly smaller memory footprint on standard GPUs. Paper is available at [High-Efficiency Neural Video Compression
   via Hierarchical Predictive Learning (arxiv 2024)](https://arxiv.org/pdf/2410.02598).
-* __DHIC__: A spectrally regularized hierarchical image coding method, delivering not only superior compression performance but also efficient optimization without increasing inference complexity. Paper is available at [Taming Hierarchical Image Coding Optimization: A Spectral Regularization Perspective (ICLR 2026)](https://openreview.net/pdf?id=lO6I66lweK).
 
 ## News
 [2026.9.24] Updated the [DHIC](https://github.com/NJUVISION/DHVC/tree/main/dhic) code and evaluation scripts, with a new [pretrained model](https://box.nju.edu.cn/seafhttp/f/c0c24ba73569426194e1/?op=view).
